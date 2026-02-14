@@ -271,16 +271,15 @@ function dpyChecklist(clobj)
 	var arr = clobj.checkItems;
 	var cnt = 0;
 	for (var i=0; i<arr.length; i++){
-
 		var obj = arr[i];
-
+		// Handle preferences for checkbox state
+		if(mode == 'none') continue;
+		if(mode == 'checked-only' && obj.state == 'incomplete') continue;
+		if(mode == 'unchecked-only' && obj.state != 'incomplete') continue;
+		
 		var ckmk = '[x]';
 		if (obj.state == 'incomplete'){ 
-			if (mode == 'checked-only') continue;
 			ckmk = '[&nbsp;]'
-		}
-		else {
-			if (mode == 'checked-only') ckmk = '___ ';
 		}
 
 		htm.push('<br>&nbsp;&nbsp;<tt>', ckmk, '</tt> ', obj.name);
