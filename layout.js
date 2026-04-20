@@ -258,7 +258,7 @@ console.log('xref.',j, arr[j], cardHtm[arr[j]]);
 function dpyChecklist(clobj)
 {
 //console.log(clobj);
-
+	var showMembers = prefVal.showChecklistItemMembers;
 	var htm = [];
 	htm.push('<p class=checklist>',clobj.name);
 
@@ -281,8 +281,15 @@ function dpyChecklist(clobj)
 		if (obj.state == 'incomplete'){ 
 			ckmk = '[&nbsp;]'
 		}
+		var objMember = obj.idMember;
+        var objMemberName = '';
+        if (showMembers != 'do-not-show' && objMember != null) {
+            var who = DB.whoLookup[objMember];
+            if (showMembers == 'show-initials') objMemberName='(' + who.initials + ')';
+            else objMemberName = '(' + who.fullName + ')';
+        }
 
-		htm.push('<br>&nbsp;&nbsp;<tt>', ckmk, '</tt> ', obj.name);
+		htm.push('<br>&nbsp;&nbsp;<tt>', ckmk, '</tt> ', objMemberName, ' ', obj.name);
 		++cnt;
 	}
 	if (cnt == 0) return '';
