@@ -127,6 +127,15 @@ var prefSpec = [
 			'checked-only'],
 		dflt: 'all' },
 
+  { key: 'showChecklistItemMembers',
+                name: 'Show Checklist Item Members',
+                type: 'pulldown',
+                options: [
+                        'do-not-show',
+                        'show-initials',
+                        'show-fullnames'
+                        ],
+                dflt: 'do-not-show' },
 
   { type: 'fieldset', name: 'Comments' }, 
 
